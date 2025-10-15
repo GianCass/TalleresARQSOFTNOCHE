@@ -19,7 +19,6 @@ public class MongoStartupLogger implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         String uri = env.getProperty("spring.data.mongodb.uri", "(defecto)");
-        // enmascarar credenciales si existen
         String masked = uri.replaceAll("//([^:@/]+):([^@/]+)@", "//$1:***@");
         log.info("[MONGO] URI efectiva: {}", masked);
     }

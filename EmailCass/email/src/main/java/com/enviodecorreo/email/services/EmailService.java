@@ -35,7 +35,6 @@ public class EmailService {
             javaMailSender.send(mimeMessage);
             log.info("[MAIL] Enviado OK. Persistiendo en Mongo...");
 
-            // IMPORTANTE: asegúrate que Email.java tenga @Document(collection = "correos")
             Email saved = emailRepository.save(email);
 
             log.info("[MONGO] Guardado OK id={} en colección 'correos'", 
