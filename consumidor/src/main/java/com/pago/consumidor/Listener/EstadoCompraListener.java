@@ -13,9 +13,10 @@ public class EstadoCompraListener {
         System.out.println(" [✔] Mensaje recibido desde RabbitMQ: " + mensaje);
 
         if ("EXITOSA".equalsIgnoreCase(mensaje)) {
-            System.out.println("✅ La compra fue exitosa.");
+            System.out.println("La compra fue exitosa.");
         } else {
-            System.out.println("⚠️ Estado desconocido: " + mensaje);
+            System.out.println("Estado desconocido: " + mensaje);
         }
     }
 }
+
