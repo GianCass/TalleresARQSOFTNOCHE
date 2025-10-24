@@ -13,6 +13,7 @@ public class ColaEstadoCompra {
 
     public void send(String estadoJson) {
         rabbitTemplate.convertAndSend(RabbitConfig.QUEUE_NAME, estadoJson);
-        System.out.println(" [x] Mensaje enviado a RabbitMQ: " + estadoJson);
+        System.out.println("Mensaje enviado: " + estadoJson);
     }
 }
+
