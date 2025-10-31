@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 
     @Id
+    private String idCliente;
     private String username; 
     private String nombre;
     private String telefono;
@@ -26,4 +27,12 @@ public class Cliente {
 
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
+
+      public Long getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
 }

@@ -9,6 +9,16 @@
             "projectName": "email",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-CompraApplication<compra>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.compra.compra.CompraApplication",
+            "projectName": "compra",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
