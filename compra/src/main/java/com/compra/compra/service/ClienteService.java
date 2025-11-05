@@ -1,13 +1,25 @@
 package com.compra.compra.service;
 
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.compra.compra.entity.Cliente;
 
 public interface ClienteService {
 
-    Cliente crearCliente(Cliente cliente);
-    Cliente obtenerClientePorUsername(String username);
-    Cliente actualizarCliente(Cliente cliente);
-    Cliente eliminarCliente(String username);
-    Cliente obtenerClientePorIDCliente(String idCliente);
-    
+    Cliente crear(Cliente cliente);
+
+    Page<Cliente> listar(Pageable pageable);
+
+    Optional<Cliente> obtenerPorId(String id);
+
+    Cliente actualizar(String id, Cliente cliente);
+
+    void eliminar(String id);
+
+    // utilitarios (si los usas en otros flujos)
+    Optional<Cliente> obtenerPorUsername(String username);
+    boolean existeUsername(String username);
 }

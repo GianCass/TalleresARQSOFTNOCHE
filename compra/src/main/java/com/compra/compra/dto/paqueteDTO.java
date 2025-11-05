@@ -1,4 +1,8 @@
 package com.compra.compra.dto;
 
-public record paqueteDTO(String codigo, String destino, Double precio) {}
+import com.compra.compra.entity.EstadoValidacionOTN;
+
+public record paqueteDTO(String codigo, String destino, Double precio, EstadoValidacionOTN estad) {
+
+   }
 

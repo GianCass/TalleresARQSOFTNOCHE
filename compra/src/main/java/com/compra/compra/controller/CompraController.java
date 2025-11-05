@@ -2,8 +2,12 @@ package com.compra.compra.controller;
 
 import com.compra.compra.dto.compraRequestDTO;
 import com.compra.compra.dto.compraResponseDTO;
+import com.compra.compra.entity.EstadoCompra;
 import com.compra.compra.service.CompraService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,4 +39,29 @@ public class CompraController {
         var compra = compraService.buscarPorId(id);
         return ResponseEntity.ok(compra);
     }
+
+
+        // com/compra/compra/controller/CompraController.java (añade abajo)
+    @GetMapping
+    public Page<compraResponseDTO> listar(Pageable pageable,
+                                        @RequestParam(required = false) EstadoCompra estado) {
+        if (estado != null) {
+            return compraService.listarPorEstado(estado, pageable);
+        }
+        return compraService.listar(pageable);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<compraResponseDTO> actualizar(@PathVariable String id,
+                                                        @RequestBody compraRequestDTO request) {
+        return ResponseEntity.ok(compraService.actualizar(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminar(@PathVariable String id) {
+        compraService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }

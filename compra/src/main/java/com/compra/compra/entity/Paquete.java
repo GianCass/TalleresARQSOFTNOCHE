@@ -30,5 +30,7 @@ public class Paquete {
 
     public EstadoValidacionOTN getEstadoValidacion() { return estadoValidacion; }
     public void setEstadoValidacion(EstadoValidacionOTN estadoValidacion) { this.estadoValidacion = estadoValidacion; }
+
+
 }
 

@@ -21,7 +21,6 @@ public class Compra {
     private Double precioTotal;
     private EstadoCompra estado;
 
-    // ✅ Constructor vacío necesario para Spring Data y los mappers
     public Compra() {
     }
 
