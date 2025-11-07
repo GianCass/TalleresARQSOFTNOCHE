@@ -1,0 +1,13 @@
+com\proyecto\authservice\auth\dto\AuthRequest.class
+com\proyecto\authservice\AuthserviceApplication.class
+com\proyecto\authservice\auth\dto\AuthResponse.class
+com\proyecto\authservice\config\PasswordEncoderConfig.class
+com\proyecto\authservice\security\JwtService.class
+com\proyecto\authservice\auth\AuthController.class
+com\proyecto\authservice\user\User$UserBuilder.class
+com\proyecto\authservice\config\SecurityConfig.class
+com\proyecto\authservice\user\Role.class
+com\proyecto\authservice\user\UserRepository.class
+com\proyecto\authservice\user\User.class
+com\proyecto\authservice\auth\dto\RegisterRequest.class
+com\proyecto\authservice\auth\AuthService.class
