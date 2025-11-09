@@ -10,10 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Carrito {
     @Id
     private String id;
-    private String clienteId;           // referencia al _id del Cliente
+    private String clienteId;           
     private List<Paquete> items = new ArrayList<>();
 
-    // getters/setters
 
     public String getId() {
         return id;
