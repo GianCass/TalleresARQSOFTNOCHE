@@ -1,5 +1,11 @@
 com\proyecto\authservice\auth\dto\AuthRequest.class
+com\proyecto\authservice\security\JwtAuthFilter.class
+com\proyecto\authservice\exception\ErrorResponse.class
 com\proyecto\authservice\AuthserviceApplication.class
+com\proyecto\authservice\user\dto\UserMeResponse.class
+com\proyecto\authservice\exception\BadRequestException.class
+com\proyecto\authservice\exception\UnauthorizedException.class
+com\proyecto\authservice\exception\NotFoundException.class
 com\proyecto\authservice\auth\dto\AuthResponse.class
 com\proyecto\authservice\config\PasswordEncoderConfig.class
 com\proyecto\authservice\security\JwtService.class
@@ -7,7 +13,10 @@ com\proyecto\authservice\auth\AuthController.class
 com\proyecto\authservice\user\User$UserBuilder.class
 com\proyecto\authservice\config\SecurityConfig.class
 com\proyecto\authservice\user\Role.class
+com\proyecto\authservice\user\CurrentUserService.class
 com\proyecto\authservice\user\UserRepository.class
+com\proyecto\authservice\user\UserController.class
 com\proyecto\authservice\user\User.class
 com\proyecto\authservice\auth\dto\RegisterRequest.class
+com\proyecto\authservice\exception\GlobalExceptionHandler.class
 com\proyecto\authservice\auth\AuthService.class

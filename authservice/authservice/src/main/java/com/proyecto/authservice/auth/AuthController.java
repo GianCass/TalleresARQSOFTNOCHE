@@ -27,7 +27,6 @@ public class AuthController {
         return ResponseEntity.ok(service.login(request));
     }
 
-    // Probar token
     @GetMapping("/me")
     public ResponseEntity<String> me() {
         return ResponseEntity.ok("OK - autenticado");

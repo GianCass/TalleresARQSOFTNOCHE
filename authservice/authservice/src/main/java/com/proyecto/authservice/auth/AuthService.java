@@ -28,9 +28,8 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest request) {
-        // Normalizar datos
         String email = request.email().trim().toLowerCase();
-        String id = request.id().trim(); // cédula como ID
+        String id = request.id().trim();
 
         if (id.isEmpty()) {
             throw new BadRequestException("La cédula (id) es obligatoria");
@@ -39,18 +38,16 @@ public class AuthService {
             throw new BadRequestException("El email ya está registrado");
         }
 
-        // Construir y guardar usuario
         User user = User.builder()
                 .id(id)
                 .nombreCompleto(request.nombreCompleto().trim())
                 .email(email)
                 .password(passwordEncoder.encode(request.password()))
-                .role(Role.USER) // por defecto USER
+                .role(Role.USER)
                 .build();
 
         userRepository.save(user);
 
-        // Generar token
         String token = jwtService.generateToken(user.getEmail());
         return new AuthResponse(token);
     }
