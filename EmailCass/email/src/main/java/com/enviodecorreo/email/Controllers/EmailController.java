@@ -16,7 +16,7 @@ import com.enviodecorreo.email.Entity.Email;
 
 @RestController
 @RequestMapping("/api/email")
-public class EmailController {
+public class EmailController { 
 
     @Autowired
     private EmailService emailService;
