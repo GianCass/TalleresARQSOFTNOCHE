@@ -42,7 +42,7 @@ onSubmit() {
       email: this.form.value.email!,
       password: this.form.value.password!
     }).subscribe({
-      next: () => this.router.navigate(['/dashboard']),
+      next: () => this.router.navigate(['/menu']),
       error: (err) => {
         this.errorMessage = this.extractError(err);
       }

@@ -1,0 +1,132 @@
+<div class="menu-container">
+  <div class="menu-background"></div>
+
+  <div class="glass-menu">
+    <h1 class="title">Panel de compra</h1>
+    <p class="subtitle">
+      Administra tu tarjeta, paquetes, carrito y compras en un solo lugar.
+    </p>
+
+    <!-- TABS HORIZONTALES -->
+    <div class="tabs">
+      <button
+        class="tab-btn"
+        [class.active]="selectedSection === 'tarjeta'"
+        (click)="selectedSection = 'tarjeta'"
+      >
+        Tarjeta
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="selectedSection === 'paquetes'"
+        (click)="selectedSection = 'paquetes'"
+      >
+        Paquetes
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="selectedSection === 'carrito'"
+        (click)="selectedSection = 'carrito'"
+      >
+        Carrito / Checkout
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="selectedSection === 'compras'"
+        (click)="selectedSection = 'compras'"
+      >
+        Mis compras
+      </button>
+    </div>
+
+    <div class="tab-content">
+      <!-- TARJETA -->
+      <ng-container *ngIf="selectedSection === 'tarjeta'">
+        <h2 class="section-title">Tarjeta</h2>
+        <p class="saldo">Saldo actual: <strong>${{ saldo }}</strong></p>
+
+        <div class="form-group">
+          <label>Monto a recargar</label>
+          <input
+            type="number"
+            [(ngModel)]="montoRecarga"
+            min="0"
+            placeholder="Ej. 50"
+          />
+        </div>
+
+        <button class="btn" (click)="agregarSaldo()">Agregar saldo</button>
+
+        <p class="mensaje" *ngIf="mensajeRecarga">{{ mensajeRecarga }}</p>
+      </ng-container>
+
+      <!-- PAQUETES -->
+      <ng-container *ngIf="selectedSection === 'paquetes'">
+        <h2 class="section-title">Paquetes disponibles</h2>
+
+        <div class="paquete" *ngFor="let p of paquetesDisponibles">
+          <div class="info">
+            <h3>{{ p.nombre }}</h3>
+            <p>{{ p.descripcion }}</p>
+            <p class="precio">${{ p.precio }}</p>
+          </div>
+          <button class="small-btn" (click)="agregarAlCarrito(p)">
+            Agregar
+          </button>
+        </div>
+      </ng-container>
+
+      <!-- CARRITO -->
+      <ng-container *ngIf="selectedSection === 'carrito'">
+        <h2 class="section-title">Carrito / Checkout</h2>
+        <p class="saldo">Saldo actual: <strong>${{ saldo }}</strong></p>
+
+        <div *ngIf="carrito.length === 0; else listaCarrito">
+          <p>Tu carrito está vacío.</p>
+        </div>
+
+        <ng-template #listaCarrito>
+          <ul class="lista-carrito">
+            <li *ngFor="let p of carrito; let i = index">
+              <span>{{ p.nombre }} - ${{ p.precio }}</span>
+              <button class="icon-btn" (click)="quitarDelCarrito(i)">×</button>
+            </li>
+          </ul>
+
+          <p class="total">
+            Total carrito: <strong>${{ totalCarrito }}</strong>
+          </p>
+          <button class="btn" (click)="confirmarCompra()">
+            Confirmar compra
+          </button>
+        </ng-template>
+
+        <p class="mensaje" *ngIf="mensajeCarrito">{{ mensajeCarrito }}</p>
+      </ng-container>
+
+      <!-- MIS COMPRAS -->
+      <ng-container *ngIf="selectedSection === 'compras'">
+        <h2 class="section-title">Mis compras</h2>
+
+        <div *ngIf="compras.length === 0; else listaCompras">
+          <p>Todavía no has realizado compras.</p>
+        </div>
+
+        <ng-template #listaCompras>
+          <div class="compra" *ngFor="let c of compras">
+            <div class="compra-header">
+              <span>Compra #{{ c.id }}</span>
+              <span>{{ c.fecha | date: 'short' }}</span>
+            </div>
+            <ul>
+              <li *ngFor="let p of c.paquetes">
+                {{ p.nombre }} - ${{ p.precio }}
+              </li>
+            </ul>
+            <p class="total">Total: <strong>${{ c.total }}</strong></p>
+          </div>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</div>
