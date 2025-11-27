@@ -28,40 +28,46 @@ export class AuthPageComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
-onSubmit() {
-  this.errorMessage = null;
+  onSubmit() {
+    this.errorMessage = null;
 
-  if (this.form.invalid) {
-    this.form.markAllAsTouched();
-    this.errorMessage = 'Por favor completa correctamente todos los campos.';
-    return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.errorMessage = 'Por favor completa correctamente todos los campos.';
+      return;
+    }
+
+    if (this.mode === 'login') {
+      const email = this.form.value.email!;
+      const password = this.form.value.password!;
+
+      this.auth.login({ email, password }).subscribe({
+        next: (resp) => {
+
+          localStorage.setItem('cedula', email); 
+          localStorage.setItem('clienteId', email);  
+
+          this.router.navigate(['/menu']);
+        },
+        error: (err) => {
+          this.errorMessage = this.extractError(err);
+        }
+      });
+
+    } else {
+      this.auth.register(this.form.value).subscribe({
+        next: () => this.mode = 'login',
+        error: (err) => {
+          this.errorMessage = this.extractError(err);
+        }
+      });
+    }
   }
-
-  if (this.mode === 'login') {
-    this.auth.login({
-      email: this.form.value.email!,
-      password: this.form.value.password!
-    }).subscribe({
-      next: () => this.router.navigate(['/menu']),
-      error: (err) => {
-        this.errorMessage = this.extractError(err);
-      }
-    });
-
-  } else {
-    this.auth.register(this.form.value).subscribe({
-      next: () => this.mode = 'login',
-      error: (err) => {
-        this.errorMessage = this.extractError(err);
-      }
-    });
-  }
-}
 
   private extractError(err: any): string {
     if (err.error && err.error.message) return err.error.message;
-    if (err.error && typeof err.error === "string") return err.error;
-    return "Ocurrió un error, por favor inténtalo de nuevo";
+    if (err.error && typeof err.error === 'string') return err.error;
+    return 'Ocurrió un error, por favor inténtalo de nuevo';
   }
 
 }
