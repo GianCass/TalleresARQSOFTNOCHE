@@ -16,7 +16,7 @@ public class CurrentUserService {
     public UserMeResponse getCurrentUser() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication.getName() == null) {
-            return null; // SecurityConfig + filtro JWT ya bloquean antes
+            return null; 
         }
         String email = authentication.getName();
 

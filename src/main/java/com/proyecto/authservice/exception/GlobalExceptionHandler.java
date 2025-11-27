@@ -59,7 +59,6 @@ public class GlobalExceptionHandler {
         return new ErrorResponse(Instant.now(), 400, "Malformed JSON", "Cuerpo de la petición inválido", req.getRequestURI());
     }
 
-    // Para cualquier otro error no controlado
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleAll(Exception ex, HttpServletRequest req) {

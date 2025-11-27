@@ -38,8 +38,8 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**").permitAll()          // register/login públicos
-                .requestMatchers("/actuator/**").permitAll()      // health, mappings, etc.
+                .requestMatchers("/auth/**").permitAll()        
+                .requestMatchers("/actuator/**").permitAll()     
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class);
